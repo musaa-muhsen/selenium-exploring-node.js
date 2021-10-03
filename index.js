@@ -3,50 +3,74 @@ require('chromedriver');
 require('geckodriver');
 const {Builder, By, Key, until} = require('selenium-webdriver');
 
-//const driver = new webdriver.Builder().forBrowser('chrome').build();
+/*
+let el = await driver.findElement(By.id(`import-file-acqId:${acqId}`));
+await driver.wait(until.elementIsVisible(el),100);
+await el.sendKeys(file);
+*/
+//const xPathClicked = xPath.click();
+//await xPathBuyClicked;
 
-// const example = async () => {
-//     let driver = new webdriver.Builder().forBrowser('chrome').build();
-//     await driver.get("https://stackoverflow.com/questions/65104233/unhandledpromiserejectionwarning-elementnotinteractableerror-element-not-inter");
-//     //await driver.findElement(webdriver.By.name("q")).sendKeys("Selenium", webdriver.Key.RETURN);
-// }   
+const example3 = async () => {
 
-// example();
-// driver is wd 
-//*[@id="L2AGLb"]
-// driver.
-// await send_keys('Manchester')
-// function getElementByXpath(path) {
-//     return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-//   }
-  
-//   console.log( getElementByXpath('//*[@id="L2AGLb"]') );
-
-
-
-// driver.findElement(By.xpath('//*[@id="L2AGLb"]'))
-//     .then(span => span.getText())
-//     .then(text => console.log(text))
-
-
-
-
-const example2 = async () => {
   let driver = await new Builder().forBrowser('chrome').build();
-  try {
-      
-    await driver.get('http://www.google.com/');// Navigate to Url 
-    // await driver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN); //    // .sendKeys('webdriver', Key.RETURN); Enter text "webdriver" and perform keyboard action "Enter"
-    // await driver.wait(until.titleIs('webdriver - Google Search'), 1000);
-    let xPath = await driver.findElement(By.xpath('//*[@id="L2AGLb"]'));
-let xPathTest = xPath.getText();
-console.log(await xPathTest)
+
+  try {      
+
+    await driver.get('https://www.net-a-porter.com/en-gb/shop/product/saint-laurent/bags/shoulder-bags/gaby-quilted-leather-shoulder-bag/20346390236017055');// Navigate to Url 
+
+    setTimeout(async function(){ 
+    const xPathBuy = await driver.findElement(By.xpath('/html/body/main/div/div[2]/div/div[1]/div[2]/div[8]/div[1]/button'));  
+    const xPathBuyClicked = await driver.wait(until.elementIsVisible(xPathBuy), 1000).click();
+    }, 0);
+
+    setTimeout(async function(){ 
+        const xPathAddToCheckout = await driver.findElement(By.xpath( '//*[@id="header"]/div/div[3]/div/div[4]/div[2]/div[2]/div/div/div/a'));
+        const xPathCheckoutClicked = await driver.wait(until.elementIsVisible(xPathAddToCheckout), 1000).click();
+     }, 2000);
+
+       setTimeout(async function(){ 
+        const xPathCheckoutContinue = await driver.findElement(By.xpath('/html/body/div[2]/div/main/div/div/div[2]/div/div[2]/div[2]/div/a'));
+        const xPathCheckoutContinueClicked = await driver.wait(until.elementIsVisible(xPathCheckoutContinue), 1000).click();
+     }, 6000);
+
+    // setTimeout(async function(){ 
+    //     const xPathSignInOption = await driver.findElement(By.name("hasAccount")).click();
+    //     //const yo = await driver.wait(until.elementIsVisible(xPathSignInOption), 2000)
+    // }, 12000);
+    
   } catch (error) {
     console.error(error);
   }
-  //finally { //  finallyCode - Block of code to be executed regardless of the try / catch result
-    //await driver.quit(); //The driver.quit() statement is required, otherwise the test continues to execute, leading to a timeout. 
- // }
+
 }
 
-example2();
+example3();
+//driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "label[for='documentType-0']"))))
+
+
+// const example3 = async () => {
+//     let driver = await new Builder().forBrowser('chrome').build();
+//     try {      
+  
+//       await driver.get('https://www.net-a-porter.com/en-gb/shop/product/saint-laurent/bags/shoulder-bags/gaby-quilted-leather-shoulder-bag/20346390236017055');// Navigate to Url 
+  
+//       const xPathBuy = await driver.findElement(By.xpath('/html/body/main/div/div[2]/div/div[1]/div[2]/div[8]/div[1]/button'));
+//       const xPathCheckout = await driver.findElement(By.xpath( '//*[@id="header"]/div/div[3]/div/div[4]/div[2]/div[2]/div/div/div/a'));
+  
+  
+//       const xPathBuyClicked = await driver.wait(until.elementIsVisible(xPathBuy), 1000).click();
+//       const xPathCheckoutClicked = await driver.wait(until.elementIsVisible(xPathCheckout), 2000).click();
+  
+  
+      
+  
+      
+  
+//     } catch (error) {
+//       console.error(error);
+//     }
+  
+//   }
+  
+//   example3();

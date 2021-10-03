@@ -30,7 +30,7 @@ const {Builder, By, Key, until} = require('selenium-webdriver');
 
 
 
-
+//firefox
 const example2 = async () => {
   let driver = await new Builder().forBrowser('chrome').build();
   try {
